@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../common/Button";
 import image1 from "../../public/images/main/main-1.png";
-import { CheckIcon, UserGroupIcon } from "@heroicons/react/solid";
+import { SearchIcon, UserGroupIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 
 interface Props {}
@@ -9,9 +9,9 @@ interface Props {}
 const LowerContainer = (props: Props) => {
   return (
     <section className="flex flex-col">
-      <article>
+      <article data-aos="fade-right">
         <h2 className="text-3xl">
-          <CheckIcon className="h-8 inline-block mr-1" />
+          <SearchIcon className="h-8 inline-block mr-1" />
           확인하세요
         </h2>
         <ul>
@@ -22,7 +22,7 @@ const LowerContainer = (props: Props) => {
           <Image src={image1} width={550} height={420}></Image>
         </div> */}
       </article>
-      <article className="ml-auto">
+      <article className="ml-auto" data-aos="fade-left">
         <h2 className="text-3xl">
           <UserGroupIcon className="h-8 inline-block mr-1" />
           공유하세요
@@ -32,7 +32,6 @@ const LowerContainer = (props: Props) => {
           <li>글 공감 및 공유</li>
         </ul>
       </article>
-      <Button className="p-2 bg-blue-100 rounded-xl text-white">지금 사용해보기</Button>
     </section>
   );
 };

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import LowerContainer from "../components/Main/LowerContainer";
 import characterImage from "../public/images/main/character-image.svg";
 import { motion } from "framer-motion";
+import Button from "../components/common/Button";
 
 export default function Home() {
   return (
@@ -13,9 +14,13 @@ export default function Home() {
           <Slogan className="text-3xl lg:text-5xl mb-5 font-bold">
             기록을 기록답게, Notionize
           </Slogan>
-          <h3 className="text-gray-500 text-xl">노션, 통계를 만나다</h3>
+          <h3 className="text-gray-500 text-xl mb-10">노션, 통계를 만나다</h3>
+          <Button className="p-2 bg-red-400 hover:bg-red-600 transition-colors w-80 rounded-xl text-white">
+            지금 사용해보기
+          </Button>
         </SloganContainer>
       </TopContainer>
+
       <LowerContainer />
     </Container>
   );
