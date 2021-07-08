@@ -10,7 +10,7 @@ const LowerContainer = (props: Props) => {
   return (
     <section className="flex flex-col">
       <article>
-        <h2 className="text-2xl">
+        <h2 className="text-3xl">
           <CheckIcon className="h-8 inline-block mr-1" />
           확인하세요
         </h2>
@@ -18,12 +18,12 @@ const LowerContainer = (props: Props) => {
           <li>작성한 태그 통계</li>
           <li>주간 / 월별 기록 통계</li>
         </ul>
-        <div className="shadow-lg rounded-lg">
+        {/* <div className="shadow-lg rounded-lg">
           <Image src={image1} width={550} height={420}></Image>
-        </div>
+        </div> */}
       </article>
       <article className="ml-auto">
-        <h2 className="text-2xl">
+        <h2 className="text-3xl">
           <UserGroupIcon className="h-8 inline-block mr-1" />
           공유하세요
         </h2>

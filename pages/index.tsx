@@ -10,7 +10,9 @@ export default function Home() {
       <TopContainer>
         <Image src={characterImage} />
         <SloganContainer>
-          <Slogan className="text-3xl lg:text-5xl mb-5">기록을 기록답게, Notionize</Slogan>
+          <Slogan className="text-3xl lg:text-5xl mb-5 font-bold">
+            기록을 기록답게, Notionize
+          </Slogan>
           <h3 className="text-gray-500 text-xl">노션, 통계를 만나다</h3>
         </SloganContainer>
       </TopContainer>
@@ -21,6 +23,8 @@ export default function Home() {
 
 const Container = styled.div`
   display: flex;
+  min-height: 100vh;
+  margin-bottom: 8rem;
   flex-direction: column;
   justify-content: center;
 `;
@@ -42,5 +46,5 @@ const SloganContainer = styled.div`
 `;
 
 const Slogan = styled.h1`
-  font-family: inter, var(--spoqa);
+  font-family: inter, var(--noto);
 `;
