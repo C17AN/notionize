@@ -1,7 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
 import LowerContainer from "../components/Main/LowerContainer";
-import characterImage from "../public/images/main/character-image.svg";
 import { motion } from "framer-motion";
 import Button from "../components/common/Button";
 
@@ -9,7 +8,7 @@ export default function Home() {
   return (
     <Container className="mb-[2rem] mt-[-40px] mx-[2rem] lg:mb-[3rem] lg:mx-[5rem]">
       <TopContainer>
-        <Image src={characterImage} />
+        <Image src="/images/main/character-image.svg" width={400} height={400} />
         <SloganContainer>
           <Slogan className="text-3xl lg:text-5xl mb-5 font-bold">
             기록을 기록답게, Notionize
