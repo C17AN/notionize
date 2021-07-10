@@ -13,22 +13,31 @@ const login = (props: Props) => {
       <LoginContainer className="shadow-xl min-w-[360px] min-h-[480px] rounded-2xl">
         <h2>Notionize</h2>
         <form className="flex flex-col items-center">
-          <FormTextInput type="text" placeholder="아이디 또는 이메일" />
-          <FormTextInput type="text" placeholder="비밀번호" />
-          <LoginButton className="bg-red-400 hover:bg-red-500 transition-colors text-white">
-            로그인
-          </LoginButton>
-          <LoginButton>
-            <FontAwesomeIcon icon={faGoogle} />
-            Google 계정으로 로그인
-          </LoginButton>
-          <LoginButton>
-            <FontAwesomeIcon icon={faGithub} />
-            Github 계정으로 로그인
-          </LoginButton>
+          <div className="flex flex-col items-center min-w-[80%] mb-5">
+            <FormTextInput type="text" placeholder="아이디 또는 이메일" className="mb-2" />
+            <FormTextInput type="text" placeholder="비밀번호" />
+          </div>
+          <div className="flex flex-col items-center min-w-[80%] mb-3">
+            <LoginButton className="bg-red-400 hover:bg-red-500 transition-colors text-white">
+              로그인
+            </LoginButton>
+            <LoginButton className="bg-blue-500 hover:bg-blue-700 transition-colors text-white">
+              <FontAwesomeIcon className="mr-2 text-lg" icon={faGoogle} />
+              Google 계정으로 로그인
+            </LoginButton>
+            <LoginButton className="bg-gray-700 hover:bg-gray-900 transition-colors text-white">
+              <FontAwesomeIcon className="mr-2 text-xl" icon={faGithub} />
+              Github 계정으로 로그인
+            </LoginButton>
+          </div>
+          <Link href="/">
+            <p className="cursor-pointer text-sm text-gray-400 hover:text-gray-600 transition-all mb-1">
+              아직 Notionize 계정이 없으신가요?
+            </p>
+          </Link>
           <Link href="/">
             <p className="cursor-pointer text-sm text-gray-400 hover:text-gray-600 transition-all">
-              아직 Notionize 계정이 없으신가요?
+              회원 정보가 기억나질 않아요
             </p>
           </Link>
         </form>
@@ -44,23 +53,27 @@ const FormTextInput = styled.input`
   border: 1px solid #cdcdcd;
   border-radius: 8px;
   padding: 8px;
-  min-width: 80%;
+  width: 100%;
 
   &:active,
   &:focus {
     transition: all 0.2s ease-in-out;
     outline: none;
-    border-color: red;
+    border-color: #3b3b3b;
   }
 `;
 
 const LoginButton = styled.button`
-  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
   border-radius: 8px;
-  min-width: 80%;
+  width: 100%;
   box-shadow: 2px 2px #cdcdcd4e;
   font-size: 0.9rem;
   margin: 6px 0;
+  vertical-align: middle;
 `;
 
 export default login;
