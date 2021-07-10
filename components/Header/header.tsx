@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import styled from "styled-components";
+import router, { useRouter } from "next/router";
 
 interface Props {}
 
 const header = (props: Props) => {
+  const router = useRouter();
+  const [selectedMenu, setSelectedMenu]: [string | null, any] = useState(null);
+  console.log(router);
+
+  useEffect(() => {
+    setSelectedMenu(router.route);
+  }, [router.route]);
+
   return (
     <div className="flex items-center h-20 bg-gray-100 sticky top-0 w-full justify-between z-10">
       <Link href="/">
@@ -17,21 +27,36 @@ const header = (props: Props) => {
         </title>
       </Link>
       <ul className="flex">
-        <li className="mr-12">
+        <HeaderList selectedMenu={selectedMenu} route={"/instruction"}>
           <Link href="/instruction">사용 방법</Link>
-        </li>
-        <li className="mr-12">
+        </HeaderList>
+        <HeaderList selectedMenu={selectedMenu} route={"/recent"}>
           <Link href="/recent">둘러보기</Link>
-        </li>
-        <li className="mr-12">
+        </HeaderList>
+        <HeaderList selectedMenu={selectedMenu} route={"/dashboard"}>
           <Link href="/dashboard">대시보드</Link>
-        </li>
-        <li className="mr-12">
+        </HeaderList>
+        <HeaderList selectedMenu={selectedMenu} route={"/login"}>
           <Link href="/login">시작하기</Link>
-        </li>
+        </HeaderList>
       </ul>
     </div>
   );
 };
+
+const HeaderList = styled.li<{ selectedMenu: string; route: string }>`
+  min-width: 75px;
+  margin-right: 2.5rem;
+  border-bottom: 3px solid
+    ${(props) => (props.selectedMenu === props.route ? "#cdcdcd" : "transparent")};
+  padding-bottom: 3px;
+  text-align: center;
+
+  &:hover {
+    transform: scale(1.04);
+    transition: transform 0.2s ease-in-out;
+    border-bottom: 3px solid #cdcdcd;
+  }
+`;
 
 export default header;

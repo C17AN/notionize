@@ -1,8 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("./animations.css");
 
-:root {
+:root  {
   --spoqa: "Spoqa Han Sans";
   --noto: "Noto Sans KR";
   --inter: "Inter";
