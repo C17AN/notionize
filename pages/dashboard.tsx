@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
+import Container from "../components/layout/container";
 
 interface Props {}
 
@@ -13,14 +14,5 @@ const dashboard = (props: Props) => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-bottom: 5rem;
-  min-height: calc(100vh - 8rem);
-`;
 
 export default dashboard;

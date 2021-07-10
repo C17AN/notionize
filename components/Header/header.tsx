@@ -19,6 +19,9 @@ const header = (props: Props) => {
         <li className="mr-12">
           <Link href="/dashboard">대시보드</Link>
         </li>
+        <li className="mr-12">
+          <Link href="/login">시작하기</Link>
+        </li>
       </ul>
     </div>
   );
