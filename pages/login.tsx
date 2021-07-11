@@ -1,13 +1,21 @@
+import { useSession, signIn, signOut } from "next-auth/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 import Container from "../components/layout/container";
+import Router, { useRouter } from "next/router";
 
 interface Props {}
 
 const login = (props: Props) => {
+  const [session, loading] = useSession();
+  if (session) {
+    console.log("logged in");
+  } else {
+    console.log("not logged in");
+  }
   return (
     <Container>
       <LoginContainer className="shadow-xl min-w-[360px] min-h-[480px] rounded-2xl">
@@ -25,7 +33,15 @@ const login = (props: Props) => {
               <FontAwesomeIcon className="mr-2 text-lg" icon={faGoogle} />
               Google 계정으로 로그인
             </LoginButton>
-            <LoginButton className="bg-gray-700 hover:bg-gray-900 transition-colors text-white">
+            <LoginButton
+              onClick={(e) => {
+                e.preventDefault();
+                Router.push(
+                  "https://github.com/login/oauth/authorize?scope=user&state=d5bce96a626eaf27b2b9c392bee36e704a79a112c2e6bcb994f0f4d880a81ecd&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fcallback%2Fgithub&client_id=8556e904e49d65bcd1fb"
+                );
+              }}
+              className="bg-gray-700 hover:bg-gray-900 transition-colors text-white"
+            >
               <FontAwesomeIcon className="mr-2 text-xl" icon={faGithub} />
               Github 계정으로 로그인
             </LoginButton>

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
 import LowerContainer from "../components/Main/LowerContainer";
-import { motion } from "framer-motion";
 import Button from "../components/common/Button";
 
 export default function Home() {
@@ -11,7 +10,9 @@ export default function Home() {
         <Image src="/images/main/character-image.svg" width={400} height={400} />
         <SloganContainer>
           <Slogan className="text-3xl lg:text-5xl mb-5 font-bold">Notion, 세상을 만나다</Slogan>
-          <h3 className="text-gray-500 text-xl mb-10">노션에 글을 작성하고, 모두와 공유해보세요</h3>
+          <h3 className="text-gray-500 text-xl mb-10">
+            노션에 글을 작성하고, 모두와 공유해보세요.
+          </h3>
           <Button className="p-2 bg-gray-500 hover:bg-gray-700 transition-colors w-80 rounded-xl text-white mb-4">
             포스트 둘러보기
           </Button>
