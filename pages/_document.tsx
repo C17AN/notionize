@@ -30,7 +30,7 @@ class document extends Document {
     return (
       <Html>
         <Head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
 
           <link
@@ -40,7 +40,7 @@ class document extends Document {
           <link
             href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css"
             rel="stylesheet"
-          />
+          /> */}
         </Head>
         <body>
           <Main />
