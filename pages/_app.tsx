@@ -9,8 +9,9 @@ import { Provider } from "next-auth/client";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    // AOS.init();
+    AOS.init();
   }, []);
+
   return (
     <Provider session={pageProps.session}>
       <Header />
