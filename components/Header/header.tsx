@@ -51,7 +51,7 @@ const header = (props: Props) => {
   );
 };
 
-const HeaderList = styled.li<{ selectedMenu: string; route: string }>`
+const HeaderList = styled.li<{ selectedMenu: string | null; route: string }>`
   min-width: 75px;
   margin-right: 2.5rem;
   border-bottom: 3px solid
