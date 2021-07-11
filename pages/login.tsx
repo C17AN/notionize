@@ -6,14 +6,21 @@ import React from "react";
 import styled from "styled-components";
 import Container from "../components/layout/container";
 import Router, { useRouter } from "next/router";
+import Image from "next/image";
 
 interface Props {}
 
 const login = (props: Props) => {
   return (
     <Container>
-      <LoginContainer className="shadow-xl min-w-[360px] min-h-[480px] rounded-2xl">
-        <h2>Notionize</h2>
+      <LoginContainer className="shadow-xl mt-10 border border-gray-100 min-w-[360px] min-h-[480px] rounded-2xl">
+        <div className="flex p-5 my-2 justify-center items-center">
+          <Image src="/logo.svg" width={60} height={60} />
+          <div className="ml-4">
+            <h2 className="text-2xl">Notionize</h2>
+            <h6 className="text-gray-400 text-sm">노션, 세상을 만나다</h6>
+          </div>
+        </div>
         <form className="flex flex-col items-center">
           <div className="flex flex-col items-center min-w-[80%] mb-5">
             <FormTextInput type="text" placeholder="아이디 또는 이메일" className="mb-2" />
