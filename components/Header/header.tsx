@@ -3,13 +3,14 @@ import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
 import router, { useRouter } from "next/router";
+import { useSession } from "next-auth/client";
 
 interface Props {}
 
 const header = (props: Props) => {
   const router = useRouter();
+  const [session, loading] = useSession();
   const [selectedMenu, setSelectedMenu]: [string | null, any] = useState(null);
-  console.log(router);
 
   useEffect(() => {
     setSelectedMenu(router.route);
@@ -36,9 +37,15 @@ const header = (props: Props) => {
         <HeaderList selectedMenu={selectedMenu} route={"/dashboard"}>
           <Link href="/dashboard">대시보드</Link>
         </HeaderList>
-        <HeaderList selectedMenu={selectedMenu} route={"/login"}>
-          <Link href="/login">시작하기</Link>
-        </HeaderList>
+        {session ? (
+          <HeaderList selectedMenu={selectedMenu} route={"/profile"}>
+            <Link href="/profile">내 정보</Link>
+          </HeaderList>
+        ) : (
+          <HeaderList selectedMenu={selectedMenu} route={"/login"}>
+            <Link href="/login">시작하기</Link>
+          </HeaderList>
+        )}
       </ul>
     </div>
   );
