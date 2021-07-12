@@ -6,8 +6,10 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "../components/Footer/footer";
 import { Provider } from "next-auth/client";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   useEffect(() => {
     AOS.init();
   }, []);
@@ -16,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Provider session={pageProps.session}>
       <Header />
       <Component {...pageProps} />
-      <Footer />
+      {router.pathname !== "/instruction" && <Footer />}
     </Provider>
   );
 }

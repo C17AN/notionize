@@ -13,7 +13,7 @@ interface Props {}
 const instruction = (props: Props) => {
   return (
     <Container>
-      <ReactPageScroller>
+      <ReactPageScroller containerHeight={"calc(100vh - 80px)"}>
         <What />
         <Step1 />
         <Step2 />

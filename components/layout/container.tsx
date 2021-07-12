@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import styled from "styled-components";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  children?: JSX.Element;
+  children?: React.ReactChild;
 }
 
 const container: React.FC<Props> = (props: Props) => {
@@ -14,7 +14,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 5rem;
   min-height: calc(100vh - 8rem);
 `;
 
