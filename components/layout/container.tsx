@@ -1,10 +1,12 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import styled from "styled-components";
 
-interface Props {}
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
+  children?: JSX.Element;
+}
 
-const container: React.FC<Props> = ({ children }) => {
-  return <Container>{children}</Container>;
+const container: React.FC<Props> = (props: Props) => {
+  return <Container {...props}>{props.children}</Container>;
 };
 
 const Container = styled.div`
