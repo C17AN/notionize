@@ -24,7 +24,7 @@ const login = (props: Props) => {
         <form className="flex flex-col items-center">
           <div className="flex flex-col items-center min-w-[80%] mb-5">
             <FormTextInput type="text" placeholder="아이디 또는 이메일" className="mb-2" />
-            <FormTextInput type="text" placeholder="비밀번호" />
+            <FormTextInput type="password" placeholder="비밀번호" />
           </div>
           <div className="flex flex-col items-center min-w-[80%] mb-3">
             <LoginButton className="bg-red-400 hover:bg-red-500 transition-colors text-white">
