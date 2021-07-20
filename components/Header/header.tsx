@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
 import router, { useRouter } from "next/router";
-import { useSession } from "next-auth/client";
+import { AuthContext } from "../../store/authContext";
 
 interface Props {}
 
 const header = (props: Props) => {
   const router = useRouter();
-  const [session, loading] = useSession();
   const [selectedMenu, setSelectedMenu]: [string | null, any] = useState(null);
+  const authContext = useContext(AuthContext);
 
   useEffect(() => {
     setSelectedMenu(router.route);
@@ -37,7 +37,7 @@ const header = (props: Props) => {
         <HeaderList selectedMenu={selectedMenu} route={"/dashboard"}>
           <Link href="/dashboard">대시보드</Link>
         </HeaderList>
-        {session ? (
+        {authContext.isLoggedIn ? (
           <HeaderList selectedMenu={selectedMenu} route={"/profile"}>
             <Link href="/profile">내 정보</Link>
           </HeaderList>
