@@ -78,7 +78,7 @@ const login = (props: Props) => {
             <div className="flex p-5 my-2 justify-center items-center">
               <Image src="/logo.svg" width={60} height={60} />
               <div className="ml-4">
-                <h2 className="text-2xl">Notionize</h2>
+                <h2 className="text-2xl">Notionise</h2>
                 <h6 className="text-gray-400 text-sm">노션, 세상을 만나다</h6>
               </div>
             </div>
@@ -139,7 +139,7 @@ const login = (props: Props) => {
               </div>
               <Link href="/signup">
                 <p className="cursor-pointer text-sm text-gray-400 hover:text-gray-600 transition-all mb-1">
-                  아직 Notionize 계정이 없으신가요?
+                  아직 Notionise 계정이 없으신가요?
                 </p>
               </Link>
               <Link href="/">

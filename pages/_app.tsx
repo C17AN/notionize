@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Notionize</title>
+        <title>Notionise</title>
       </Head>
       <AuthContextProvider>
         <>

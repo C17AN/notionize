@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Transition } from "react-transition-group";
+import styled from "styled-components";
 import Container from "../components/layout/container";
 
 interface Props {}
@@ -34,10 +35,19 @@ const signup = (props: Props) => {
           }}
         >
           <>
-            <h1 className="text-3xl font-bold">Welcome to Notionize!</h1>
-            <h3 className="text-gray-600">Notionize에 오신 것을 환영합니다!</h3>
-            <div>
+            <SignUpHeaderContainer>
+              <h1 className="text-3xl font-bold">Welcome to Notionise!</h1>
+              <h3 className="text-gray-500 mt-2">Notionise에 오신 것을 환영합니다!</h3>
+            </SignUpHeaderContainer>
+            <SignUpContentContainer>
               <h3>사용자 정보</h3>
+              <label htmlFor="email">이메일</label>
+              <input
+                className="w-[600px]"
+                type="text"
+                id="email"
+                placeholder="사용할 이메일을 입력하세요"
+              />
               <label htmlFor="name">별명</label>
               <input
                 className="w-[600px]"
@@ -53,12 +63,37 @@ const signup = (props: Props) => {
                 id="github"
                 placeholder="Github 계정이 있다면 추가하실 수 있습니다."
               />
-            </div>
+            </SignUpContentContainer>
           </>
         </Container>
       )}
     </Transition>
   );
 };
+
+const SignUpHeaderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: 1.5s ease-in-out 0.2s forwards fadeAndGoUp;
+  position: relative;
+  opacity: 0;
+
+  @keyframes fadeAndGoUp {
+    0% {
+      opacity: 0;
+      top: 300px;
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      top: -150px;
+    }
+  }
+`;
+
+const SignUpContentContainer = styled.div``;
 
 export default signup;

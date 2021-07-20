@@ -22,7 +22,7 @@ const header = (props: Props) => {
         <title className="text-xl font-bold flex items-center pl-8 cursor-pointer">
           <Image src="/logo.svg" width={42} height={42} />
           <div className="pl-5">
-            <h1>Notionize</h1>
+            <h1>Notionise</h1>
             <h3 className="text-xs text-gray-400 font-regular">노션, 세상을 만나다</h3>
           </div>
         </title>
