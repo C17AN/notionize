@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 import Footer from "../components/Footer/footer";
 import { useRouter } from "next/router";
 import { AuthContextProvider } from "../store/authContext";
-import Head from "next/Head";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
