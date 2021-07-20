@@ -1,4 +1,3 @@
-import { useSession, signIn, signOut } from "next-auth/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
