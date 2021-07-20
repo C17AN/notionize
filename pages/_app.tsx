@@ -5,8 +5,9 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Footer from "../components/Footer/footer";
-import { Provider } from "next-auth/client";
 import { useRouter } from "next/router";
+import { AuthContextProvider } from "../store/authContext";
+import Head from "next/Head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -15,11 +16,18 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <Provider session={pageProps.session}>
-      <Header />
-      <Component {...pageProps} />
-      {router.pathname !== "/instruction" && <Footer />}
-    </Provider>
+    <>
+      <Head>
+        <title>Notionize</title>
+      </Head>
+      <AuthContextProvider>
+        <>
+          <Header />
+          <Component {...pageProps} />
+          {router.pathname !== "/instruction" && <Footer />}
+        </>
+      </AuthContextProvider>
+    </>
   );
 }
 export default MyApp;

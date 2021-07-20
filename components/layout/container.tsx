@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import styled from "styled-components";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
-  children?: React.ReactChild;
+  children?: React.ReactChild | React.ReactChildren;
 }
 
 const container: React.FC<Props> = (props: Props) => {

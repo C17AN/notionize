@@ -2,14 +2,15 @@ import { useSession, signIn, signOut } from "next-auth/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Container from "../components/layout/container";
 import { Transition } from "react-transition-group";
-import Router, { useRouter } from "next/router";
 import Image from "next/image";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import router from "next/router";
+import { AuthContext } from "../store/authContext";
+import { IsignInResponse } from "./api/auth/SignInWithEmail";
 
 interface Props {}
 
@@ -31,6 +32,9 @@ const login = (props: Props) => {
   const [loaded, setLoaded] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const authContext = useContext(AuthContext);
+
   useEffect(() => {
     setLoaded(true);
   }, []);
@@ -43,10 +47,16 @@ const login = (props: Props) => {
   const signInWithEmail = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/auth/SignInWithEmail", { email, password });
+      const result = await axios.post("/api/auth/SignInWithEmail", {
+        email,
+        password,
+      });
+      const { idToken, expires, email: registerdEmail } = result.data.data;
+      authContext.signIn(idToken);
       router.push("/");
     } catch (err) {
-      console.log("login failed");
+      setError(true);
+      setTimeout(() => setError(false), 3000);
     }
   };
 
@@ -74,7 +84,7 @@ const login = (props: Props) => {
               </div>
             </div>
             <form className="flex flex-col items-center">
-              <div className="flex flex-col items-center min-w-[80%] mb-5">
+              <div className="flex flex-col items-center min-w-[80%]">
                 <FormTextInput
                   type="text"
                   placeholder="아이디 또는 이메일"
@@ -87,13 +97,20 @@ const login = (props: Props) => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+              {error ? (
+                <LoginFailText className="text-red-500 text-sm h-4 my-2 opacity-0">
+                  로그인에 실패했습니다.
+                </LoginFailText>
+              ) : (
+                <p className="text-sm h-4 my-2"> </p>
+              )}
               <div className="flex flex-col items-center min-w-[80%] mb-3">
-                <LoginButton
+                {/* <LoginButton
                   className="bg-red-400 hover:bg-red-500 transition-colors text-white"
                   onClick={signUpWithEmail}
                 >
                   회원가입
-                </LoginButton>
+                </LoginButton> */}
                 <LoginButton
                   className="bg-red-400 hover:bg-red-500 transition-colors text-white"
                   onClick={signInWithEmail}
@@ -167,6 +184,19 @@ const LoginButton = styled.button`
   font-size: 0.9rem;
   margin: 6px 0;
   vertical-align: middle;
+`;
+
+const LoginFailText = styled.p`
+  animation: 0.8s ease-out 2s fadeout backwards;
+
+  @keyframes fadeout {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
 `;
 
 export default login;

@@ -1,16 +1,17 @@
 import Image from "next/image";
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useContext, useEffect, useLayoutEffect } from "react";
 import styled from "styled-components";
 import Button from "../components/common/Button";
 import Container from "../components/layout/container";
 import { useRouter } from "next/router";
-import { getSession } from "next-auth/client";
 import Link from "next/link";
+import { AuthContext } from "../store/authContext";
 
-const dashboard = ({ session }) => {
+const dashboard = ({}) => {
   const router = useRouter();
+  const authContext = useContext(AuthContext);
   useLayoutEffect(() => {
-    if (!session) {
+    if (authContext.isLoggedIn === false) {
       router.push("/login");
     }
   }, []);
@@ -33,9 +34,7 @@ const dashboard = ({ session }) => {
 
 export async function getServerSideProps(ctx) {
   return {
-    props: {
-      session: await getSession(ctx),
-    },
+    props: {},
   };
 }
 
