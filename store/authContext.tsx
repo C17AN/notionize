@@ -6,7 +6,7 @@ interface IProps {
 
 interface IAuthContext {
   isLoggedIn: boolean;
-  NotioniseToken: string | null;
+  notioniseToken: string | null;
   activeUser: string | null;
   signIn: any;
   signOut: any;
@@ -14,24 +14,24 @@ interface IAuthContext {
 
 export const AuthContext = createContext<IAuthContext>({
   isLoggedIn: false,
-  NotioniseToken: "",
+  notioniseToken: "",
   activeUser: null,
   signIn: (token: string) => {},
   signOut: () => {},
 });
 
 export const AuthContextProvider: React.FC<IProps> = ({ children }) => {
-  const [NotioniseToken, setNotioniseToken]: [string | null, any] = useState("");
+  const [notioniseToken, setNotioniseToken]: [string | null, any] = useState("");
   const [activeUser, setActiveUser]: [string | null, any] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("NotioniseAuth") === "") {
+    if (localStorage.getItem("notioniseAuth") === "") {
       setNotioniseToken("");
       setActiveUser(null);
       setIsLoggedIn(false);
     } else {
-      setNotioniseToken(localStorage.getItem("NotioniseAuth"));
+      setNotioniseToken(localStorage.getItem("notioniseAuth"));
       setActiveUser("test user");
       setIsLoggedIn(true);
     }
@@ -39,13 +39,13 @@ export const AuthContextProvider: React.FC<IProps> = ({ children }) => {
 
   const signOutHandler = () => {
     setNotioniseToken("");
-    localStorage.setItem("NotioniseAuth", "");
+    localStorage.setItem("notioniseAuth", "");
     setIsLoggedIn(false);
   };
 
   const signInHandler = (token: string) => {
     setNotioniseToken(token);
-    localStorage.setItem("NotioniseAuth", token);
+    localStorage.setItem("notioniseAuth", token);
     setIsLoggedIn(true);
   };
 
@@ -53,7 +53,7 @@ export const AuthContextProvider: React.FC<IProps> = ({ children }) => {
     <AuthContext.Provider
       value={{
         isLoggedIn,
-        NotioniseToken,
+        notioniseToken,
         activeUser,
         signIn: signInHandler,
         signOut: signOutHandler,
