@@ -2,9 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import router from "next/router";
 import React, { useContext } from "react";
 import styled from "styled-components";
-import Container from "../components/layout/container";
-import ProfileContainer from "../components/layout/profileContainer";
-import { AuthContext } from "../store/authContext";
+import Container from "../../components/layout/container";
+import ProfileContainer from "../../components/layout/profileContainer";
+import { AuthContext } from "../../store/authContext";
 
 const profile = ({}) => {
   const authContext = useContext(AuthContext);
