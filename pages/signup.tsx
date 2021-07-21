@@ -211,7 +211,7 @@ const InputItem = styled.div`
     transition: all 0.2s ease-in-out;
     border-bottom: 1px solid transparent;
     padding: 4px;
-    width: 80%;
+    width: 100%;
     cursor: pointer;
   }
   input:focus {
