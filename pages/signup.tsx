@@ -22,9 +22,16 @@ const transitionStyles = {
 
 const signup = (props: Props) => {
   const [loaded, setLoaded] = useState(false);
+  const [signUpForm, setSignUpForm] = useState({});
+
   useEffect(() => {
     setLoaded(true);
   }, []);
+
+  const onFormDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSignUpForm({ ...signUpForm, [e.target.name]: e.target.value });
+    console.log(signUpForm);
+  };
 
   return (
     <Transition in={loaded} timeout={duration}>
@@ -40,25 +47,34 @@ const signup = (props: Props) => {
               <h1 className="text-3xl font-bold">Welcome to Notionise!</h1>
               <h3 className="text-gray-500 mt-2">Notionise에 오신 것을 환영합니다!</h3>
             </SignUpHeaderContainer>
-            <SignUpContentContainer>
-              <InfoContainer className="mr-5">
+            <SignUpContentContainer className="flex justify-center mt-14 px-40 py-10 flex-1 w-full">
+              <InfoContainer className="mr-10">
                 <InfoType>기본 정보</InfoType>
                 <InputItem>
                   <label htmlFor="email">이메일</label>
+                  {/* <div className="flex"> */}
                   <input
                     className="w-full"
                     type="email"
+                    name="email"
                     autoComplete="off"
+                    onChange={onFormDataChange}
                     id="email"
                     placeholder="사용할 이메일을 입력해주세요."
                   />
+                  {/* <Button className="inline-block min-w-[100px] py-3 mx-3 px-5 bg-gray-400 hover:bg-gray-600 transition-colors rounded-xl text-white text-sm">
+                      인증하기
+                    </Button> */}
+                  {/* </div> */}
                 </InputItem>
                 <InputItem>
                   <label htmlFor="email">비밀번호</label>
                   <input
                     className="w-full"
                     type="password"
+                    name="password"
                     autoComplete="off"
+                    onChange={onFormDataChange}
                     id="email"
                     placeholder="사용할 비밀번호를 입력해주세요."
                   />
@@ -68,18 +84,22 @@ const signup = (props: Props) => {
                   <input
                     className="w-full"
                     type="password"
+                    name="password_validate"
                     autoComplete="off"
+                    onChange={onFormDataChange}
                     id="email"
                     placeholder="비밀번호 확인을 위해 다시 한번 입력해주세요."
                   />
                 </InputItem>
                 <InputItem>
-                  <label htmlFor="name">별명</label>
+                  <label htmlFor="username">별명</label>
                   <input
                     className="w-full"
                     type="text"
+                    name="username"
                     autoComplete="off"
-                    id="name"
+                    onChange={onFormDataChange}
+                    id="username"
                     placeholder="남들에게 보여질 별명을 입력해주세요."
                   />
                 </InputItem>
@@ -88,22 +108,26 @@ const signup = (props: Props) => {
               <InfoContainer>
                 <InfoType>추가 정보</InfoType>
                 <InputItem>
-                  <label htmlFor="name">Github</label>
+                  <label htmlFor="github">Github</label>
                   <input
                     className="w-full"
                     type="text"
+                    name="github"
                     autoComplete="off"
+                    onChange={onFormDataChange}
                     id="github"
                     placeholder="Github 계정이 있다면 추가하실 수 있습니다."
                   />
                 </InputItem>
                 <InputItem>
-                  <label htmlFor="name">관심 분야</label>
+                  <label htmlFor="interests">관심 분야</label>
                   <input
                     className="w-full"
                     type="text"
+                    name="interests"
                     autoComplete="off"
-                    id="favorite"
+                    onChange={onFormDataChange}
+                    id="interests"
                     placeholder="프로필에 보여질 관심 분야를 5개까지 추가하실 수 있습니다."
                   />
                 </InputItem>
@@ -111,12 +135,21 @@ const signup = (props: Props) => {
                   <Button className="py-3 mx-3 px-5  bg-red-400 hover:bg-red-600 transition-colors rounded-xl text-white text-sm">
                     로그인 화면으로 돌아가기
                   </Button>
-                  <Button className="py-3 mx-3 px-5 bg-gray-500 hover:bg-gray-700 transition-colors rounded-xl text-white text-sm">
+                  <Button
+                    type="submit"
+                    className="py-3 mx-3 px-5 bg-gray-500 hover:bg-gray-700 transition-colors rounded-xl text-white text-sm"
+                  >
                     계속하기
                   </Button>
                 </div>
               </InfoContainer>
             </SignUpContentContainer>
+            <div className="flex items-center">
+              <input type="checkbox" className="mr-2" id="agreements"></input>
+              <label htmlFor="agreements" className="text-gray-400 text-sm">
+                Notionise의 약관을 준수하며, 서비스 운영을 위한 개인정보 수집 정책에 동의합니다.
+              </label>
+            </div>
           </>
         </Container>
       )}
@@ -132,9 +165,14 @@ const InfoType = styled.h3`
 
 const InfoContainer = styled.div`
   display: flex;
+  /* min-width: 600px; */
   flex-direction: column;
   align-items: center;
   flex: 1;
+  border: 1px solid #efefef;
+  border-radius: 12px;
+  padding: 24px 32px;
+  box-shadow: 3px 3px 5px #cdcdcd;
 `;
 
 const SignUpHeaderContainer = styled.div`
@@ -155,7 +193,7 @@ const SignUpHeaderContainer = styled.div`
     }
     100% {
       opacity: 1;
-      top: -20px;
+      top: 50px;
     }
   }
 `;
@@ -182,12 +220,15 @@ const InputItem = styled.div`
   }
 `;
 
-const SignUpContentContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-  padding: 0 150px;
-  width: 100%;
+const SignUpContentContainer = styled.form`
+  opacity: 0;
+  animation: 1s 1.5s ease-in-out forwards fadeIn;
+
+  @keyframes fadeIn {
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 export default signup;

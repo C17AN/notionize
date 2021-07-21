@@ -39,7 +39,7 @@ const header = (props: Props) => {
         </HeaderList>
         {authContext.isLoggedIn ? (
           <HeaderList selectedMenu={selectedMenu} route={"/profile"}>
-            <Link href="/profile">내 정보</Link>
+            <Link href="/profile/test-user">내 정보</Link>
           </HeaderList>
         ) : (
           <HeaderList selectedMenu={selectedMenu} route={"/login"}>
