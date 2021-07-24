@@ -35,7 +35,7 @@ const header = (props: Props) => {
           <Link href="/recent">둘러보기</Link>
         </HeaderList>
         <HeaderList selectedMenu={selectedMenu} route={"/dashboard"}>
-          <Link href="/dashboard">대시보드</Link>
+          <Link href="/dashboard/keyNotFound">대시보드</Link>
         </HeaderList>
         {authContext.isLoggedIn ? (
           <HeaderList selectedMenu={selectedMenu} route={"/profile"}>

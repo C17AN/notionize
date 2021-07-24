@@ -1,14 +1,14 @@
 import Image from "next/image";
 import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
 import styled from "styled-components";
-import Button from "../components/common/Button";
-import Container from "../components/layout/container";
+import Button from "../../components/common/Button";
+import Container from "../../components/layout/container";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { AuthContext } from "../store/authContext";
-import ModalWrapper from "../components/common/ModalWrapper";
+import { AuthContext } from "../../store/authContext";
+import ModalWrapper from "../../components/common/ModalWrapper";
 
-const dashboard = ({}) => {
+const keynotfound = ({}) => {
   const router = useRouter();
   const authContext = useContext(AuthContext);
   const [modalOpen, setModalOpen] = useState(false);
@@ -38,17 +38,25 @@ const dashboard = ({}) => {
           </Button>
         </div>
         <ModalWrapper setModalOpen={setModalOpen} modalOpen={modalOpen}>
-          <div>
+          <InputItem>
             <label htmlFor="API" className="block">
               Notion API 키 등록
             </label>
-            <input id="API" placeholder="API 키를 입력하세요"></input>
-          </div>
-          <div>
+            <input id="API" placeholder="API 키를 입력하세요." />
+          </InputItem>
+          <InputItem>
             <label htmlFor="DATABASE" className="block">
               데이터베이스 등록
             </label>
-            <input id="DATABASE" placeholder="데이터베이스 아이디를 입력하세요"></input>
+            <input id="DATABASE" placeholder="데이터베이스 아이디를 입력하세요." />
+          </InputItem>
+          <div className="flex justify-end">
+            <Button className="py-3 px-5 mr-4 bg-red-400 hover:bg-red-600 transition-colors rounded-xl text-white text-sm">
+              취소
+            </Button>
+            <Button className="py-3 px-5 bg-gray-400 hover:bg-gray-600 transition-colors rounded-xl text-white text-sm">
+              저장
+            </Button>
           </div>
         </ModalWrapper>
       </>
@@ -56,10 +64,32 @@ const dashboard = ({}) => {
   );
 };
 
+const InputItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1.2rem;
+  label {
+    font-size: 1.15rem;
+    font-weight: 800px;
+  }
+  input {
+    transition: all 0.2s ease-in-out;
+    border-bottom: 1px solid transparent;
+    padding: 4px;
+    width: 100%;
+    cursor: pointer;
+  }
+  input:focus {
+    transition: all 0.2s ease-in-out;
+    border-bottom: 1px solid #cdcdcd;
+  }
+`;
+
 export async function getServerSideProps(ctx) {
   return {
     props: {},
   };
 }
 
-export default dashboard;
+export default keynotfound;
