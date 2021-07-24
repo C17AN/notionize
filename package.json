@@ -23,13 +23,15 @@
     "react-modal": "^3.14.3",
     "react-page-scroller": "^2.2.1",
     "react-transition-group": "^4.4.2",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/aos": "^3.0.4",
     "@types/react": "17.0.14",
     "@types/react-transition-group": "^4.4.2",
     "@types/styled-components": "^5.1.11",
+    "@types/uuid": "^8.3.1",
     "autoprefixer": "^10.2.6",
     "babel-plugin-styled-components": "^1.13.2",
     "postcss": "^8.3.5",
