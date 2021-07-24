@@ -8,6 +8,7 @@ interface IAuthContext {
   isLoggedIn: boolean;
   notioniseToken: string | null;
   activeUser: string | null;
+  isVerified: boolean;
   signIn: any;
   signOut: any;
 }
@@ -15,6 +16,7 @@ interface IAuthContext {
 export const AuthContext = createContext<IAuthContext>({
   isLoggedIn: false,
   notioniseToken: "",
+  isVerified: false,
   activeUser: null,
   signIn: (token: string) => {},
   signOut: () => {},
@@ -23,6 +25,7 @@ export const AuthContext = createContext<IAuthContext>({
 export const AuthContextProvider: React.FC<IProps> = ({ children }) => {
   const [notioniseToken, setNotioniseToken]: [string | null, any] = useState("");
   const [activeUser, setActiveUser]: [string | null, any] = useState(null);
+  const [isVerified, setIsVerified] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -55,6 +58,7 @@ export const AuthContextProvider: React.FC<IProps> = ({ children }) => {
         isLoggedIn,
         notioniseToken,
         activeUser,
+        isVerified,
         signIn: signInHandler,
         signOut: signOutHandler,
       }}

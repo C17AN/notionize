@@ -1,4 +1,5 @@
 import axios from "axios";
+import { emailVerifyCationType } from "../../types/emailVerifyCationType";
 
 type signUpFormType = {
   email: string;
@@ -9,5 +10,10 @@ type signUpFormType = {
   interests: [];
 };
 
-export const signUpEmailAPI = (body: signUpFormType) =>
-  axios.post("/api/auth/SignUpWithEmail", body);
+export const signUpEmailAPI = (body: signUpFormType) => {
+  return axios.post("/api/auth/SignUpWithEmail", body);
+};
+
+export const verifyEmailAPI = (body: emailVerifyCationType) => {
+  return axios.post("/api/auth/VerifyEmail", body);
+};

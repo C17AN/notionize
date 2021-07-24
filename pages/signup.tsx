@@ -4,7 +4,10 @@ import { Transition } from "react-transition-group";
 import styled from "styled-components";
 import Button from "../components/common/Button";
 import Container from "../components/layout/container";
+import { signUpEmailAPI, verifyEmailAPI } from "../lib/api/auth";
 import { checkFormComplete } from "../lib/signUpFormValidator";
+import { emailVerifyCationType } from "../types/emailVerifyCationType";
+import SignUpWithEmail from "./api/auth/SignUpWithEmail";
 
 const duration = 300;
 
@@ -25,7 +28,7 @@ type signUpFormType = {
   password: "";
   password_validate: "";
   username: "";
-  github: "";
+  githubUrl: "";
   interests: [];
 };
 
@@ -36,7 +39,7 @@ const signup = () => {
     password: "",
     password_validate: "",
     username: "",
-    github: "",
+    githubUrl: "",
     interests: [],
   });
 
@@ -131,14 +134,14 @@ const signup = () => {
               <InfoContainer>
                 <InfoType>추가 정보</InfoType>
                 <InputItem>
-                  <label htmlFor="github">Github</label>
+                  <label htmlFor="githubUrl">Github</label>
                   <input
                     className="w-full"
                     type="text"
-                    name="github"
+                    name="githubUrl"
                     autoComplete="off"
                     onChange={onFormDataChange}
-                    id="github"
+                    id="githubUrl"
                     placeholder="Github 계정이 있다면 추가하실 수 있습니다."
                   />
                 </InputItem>
@@ -169,9 +172,11 @@ const signup = () => {
                         ? "bg-gray-500"
                         : "bg-blue-400 hover:bg-blue-600"
                     }  transition-colors rounded-xl text-white text-sm`}
-                    onClick={() =>
-                      Router.push({ pathname: "/verifyEmail", query: { email: signUpForm.email } })
-                    }
+                    onClick={(e) => {
+                      e.preventDefault();
+                      signUpEmailAPI(signUpForm).then((res: any) => verifyEmailAPI(res));
+                      Router.push({ pathname: "/verifyEmail", query: { email: signUpForm.email } });
+                    }}
                     disabled={!isFormComplete.state}
                   >
                     계속하기

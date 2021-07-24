@@ -31,7 +31,7 @@ const SignUpWithEmail = async (req: NextApiRequest, res: NextApiResponse) => {
       password: password,
       returnSecureToken: true,
     });
-    const databaseRequest = await axios.post(BackendUrl, userData);
+    await axios.post(BackendUrl, userData);
     res.status(200).send({ message: "Sign up with Email success", data: firebaseRequest.data });
   } catch (error) {
     console.log(error);
