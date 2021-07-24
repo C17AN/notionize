@@ -3,7 +3,7 @@ import React from "react";
 interface Props {}
 
 const Tag = (props: Props) => {
-  return <div></div>;
+  return <div {...props}></div>;
 };
 
 export default Tag;

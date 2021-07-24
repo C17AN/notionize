@@ -1,10 +1,10 @@
+import Router from "next/router";
 import React, { useEffect, useState } from "react";
 import { Transition } from "react-transition-group";
 import styled from "styled-components";
 import Button from "../components/common/Button";
 import Container from "../components/layout/container";
-
-interface Props {}
+import { checkFormComplete } from "../lib/signUpFormValidator";
 
 const duration = 300;
 
@@ -20,13 +20,36 @@ const transitionStyles = {
   exited: { opacity: 0 },
 };
 
-const signup = (props: Props) => {
+type signUpFormType = {
+  email: string;
+  password: "";
+  password_validate: "";
+  username: "";
+  github: "";
+  interests: [];
+};
+
+const signup = () => {
   const [loaded, setLoaded] = useState(false);
-  const [signUpForm, setSignUpForm] = useState({});
+  const [signUpForm, setSignUpForm]: [signUpFormType, any] = useState({
+    email: "",
+    password: "",
+    password_validate: "",
+    username: "",
+    github: "",
+    interests: [],
+  });
+
+  const [isFormComplete, setIsFormComplete] = useState({ state: false, message: "" });
+  const [tagList, setTagList] = useState([]);
 
   useEffect(() => {
     setLoaded(true);
   }, []);
+
+  useEffect(() => {
+    setIsFormComplete(checkFormComplete(signUpForm));
+  }, [signUpForm]);
 
   const onFormDataChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSignUpForm({ ...signUpForm, [e.target.name]: e.target.value });
@@ -68,7 +91,7 @@ const signup = (props: Props) => {
                   {/* </div> */}
                 </InputItem>
                 <InputItem>
-                  <label htmlFor="email">비밀번호</label>
+                  <label htmlFor="password">비밀번호</label>
                   <input
                     className="w-full"
                     type="password"
@@ -132,12 +155,24 @@ const signup = (props: Props) => {
                   />
                 </InputItem>
                 <div className="mt-auto ml-auto">
+                  {isFormComplete.state === false && (
+                    <SignUpFailText className="text-center mb-4 text-sm opacity-0">
+                      {isFormComplete.message}
+                    </SignUpFailText>
+                  )}
                   <Button className="py-3 mx-3 px-5  bg-red-400 hover:bg-red-600 transition-colors rounded-xl text-white text-sm">
                     로그인 화면으로 돌아가기
                   </Button>
                   <Button
-                    type="submit"
-                    className="py-3 mx-3 px-5 bg-gray-500 hover:bg-gray-700 transition-colors rounded-xl text-white text-sm"
+                    className={`py-3 mx-3 px-5 ${
+                      isFormComplete.state === false
+                        ? "bg-gray-500"
+                        : "bg-blue-400 hover:bg-blue-600"
+                    }  transition-colors rounded-xl text-white text-sm`}
+                    onClick={() =>
+                      Router.push({ pathname: "/verifyEmail", query: { email: signUpForm.email } })
+                    }
+                    disabled={!isFormComplete.state}
                   >
                     계속하기
                   </Button>
@@ -226,6 +261,19 @@ const SignUpContentContainer = styled.form`
 
   @keyframes fadeIn {
     100% {
+      opacity: 1;
+    }
+  }
+`;
+
+const SignUpFailText = styled.p`
+  animation: 0.8s ease-out 2s fadeout forwards;
+
+  @keyframes fadeout {
+    from {
+      opacity: 0;
+    }
+    to {
       opacity: 1;
     }
   }
