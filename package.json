@@ -23,6 +23,7 @@
     "react-modal": "^3.14.3",
     "react-page-scroller": "^2.2.1",
     "react-transition-group": "^4.4.2",
+    "react-wordcloud": "^1.2.7",
     "styled-components": "^5.3.0",
     "uuid": "^8.3.2"
   },
